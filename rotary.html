@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rotary Dial</title>
+
+  <link rel="stylesheet" href="styles/rotary.css" />
+  <link rel="stylesheet" href="styles/demo.css" />
+  <style>
+    body {
+      margin: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease-in;
+    }
+    body.loaded {
+      opacity: 1;
+    }
+    .scroll-buffer {
+      height: 150vh; /* Scroll buffer for touch up */
+    }
+    button.back-home {
+      position: fixed;
+      bottom: 1rem;
+      left: 1rem;
+      padding: 0.5rem 1rem;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      z-index: 999;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="nojs">
+  <!-- Fake scroll space at top -->
+  <div class="scroll-buffer"></div>
+
+  <!-- Rotary phone dial -->
+  <div id="demo">
+    <div class="rotary">
+      <div class="numbers">
+        <div class="number"></div><div class="number"></div><div class="number"></div><div class="number"></div><div class="number"></div>
+        <div class="number"></div><div class="number"></div><div class="number"></div><div class="number"></div><div class="number"></div>
+      </div>
+      <div class="dial">
+        <div class="hole-wrapper"><div class="hole"></div></div><div class="hole-wrapper"><div class="hole"></div></div>
+        <div class="hole-wrapper"><div class="hole"></div></div><div class="hole-wrapper"><div class="hole"></div></div>
+        <div class="hole-wrapper"><div class="hole"></div></div><div class="hole-wrapper"><div class="hole"></div></div>
+        <div class="hole-wrapper"><div class="hole"></div></div><div class="hole-wrapper"><div class="hole"></div></div>
+        <div class="hole-wrapper"><div class="hole"></div></div><div class="hole-wrapper"><div class="hole"></div></div>
+      </div>
+      <div class="guard"></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <input type="tel" id="input" maxlength="1" data-rotary="#demo" placeholder="Dial a number">
+    <a id="call" title="Call" style="font-size: 2rem; text-decoration: none; cursor: pointer;">📞</a>
+  </div>
+
+  <button class="back-home" onclick="fadeAndReturnHome()">⬆ Back</button>
+
+  <script src="scripts/zepto.custom.js"></script>
+  <script src="scripts/rotary.js"></script>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("loaded");
+    });
+
+    let returning = false;
+    let pageLoadTime = Date.now();
+
+    function fadeAndReturnHome() {
+      if (returning || Date.now() - pageLoadTime < 1000) return;
+      returning = true;
+      document.body.style.transition = 'opacity 0.4s ease-out';
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 400);
+    }
+
+    // Redirect based on number dialed
+    const dialMap = {
+      "1": "about.html",
+      "2": "projects.html",
+      "3": "blog.html",
+      "4": "resume.html",
+      "5": "contact.html",
+      "6": "press.html",
+      "7": "listen.html",
+      "8": "read.html",
+      "9": "secret.html",
+      "0": "portal.html"
+    };
+
+    document.getElementById("call").addEventListener("click", function () {
+      const inputValue = document.getElementById("input").value.trim();
+      const targetPage = dialMap[inputValue];
+
+      if (targetPage) {
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+          window.location.href = targetPage;
+        }, 400);
+      } else {
+        alert("No page linked to this number.");
+      }
+    });
+
+    // Allow swipe-up to return home too
+    let lastY = window.scrollY;
+    window.addEventListener("scroll", () => {
+      const currentY = window.scrollY;
+      const scrolledUp = currentY < lastY;
+
+      if (scrolledUp && currentY < 20 && lastY > 30) {
+        fadeAndReturnHome();
+      }
+
+      lastY = currentY;
+    });
+
+    let touchStartY = null;
+    window.addEventListener("touchstart", (e) => {
+      touchStartY = e.touches[0].clientY;
+    });
+
+    window.addEventListener("touchmove", (e) => {
+      if (touchStartY === null || returning) return;
+      const deltaY = e.touches[0].clientY - touchStartY;
+      if (deltaY > 60 && window.scrollY < 20) {
+        fadeAndReturnHome();
+      }
+    });
+  </script>
+</body>
+</html>

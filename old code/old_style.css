@@ -1,0 +1,446 @@
+/* @font-face {
+  font-family: "Univers LT";
+  src: local("Univers LT"),
+    url("/assets/fonts/UniversLTStd.woff") format("woff");
+} */
+
+.homepage {
+  header {
+    align-self: flex-start;
+  }
+  h1 {
+    font-size: 2em;
+    color: #333;
+  }
+  font-family: Consolas, monospace, -apple-system, system-ui, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.resizable-container {
+  /* Various breakpoints to make this break evenly */
+  @media (min-width: 1000px) {
+    max-width: 700px;
+  }
+  @media (min-width: 800px) and (max-width: 999px) {
+    max-width: 700px;
+  }
+  @media (min-width: 600px) and (max-width: 799px) {
+    max-width: 500px;
+  }
+  @media (min-width: 500px) and (max-width: 599px) {
+    max-width: 450px;
+  }
+  @media (min-width: 401px) and (max-width: 499px) {
+    max-width: 320px;
+  }
+  @media (min-width: 200px) and (max-width: 400px) {
+    max-width: 275px;
+  }
+}
+
+.resizable-video {
+  /* Various breakpoints to make this break evenly, optimized for video */
+  @media (min-width: 1000px) {
+    max-width: 640px;
+  }
+  @media (min-width: 800px) and (max-width: 999px) {
+    max-width: 560px;
+  }
+  @media (min-width: 600px) and (max-width: 799px) {
+    max-width: 480px;
+  }
+  @media (min-width: 401px) and (max-width: 599px) {
+    max-width: 360px;
+  }
+  @media (min-width: 200px) and (max-width: 400px) {
+    max-width: 240px;
+  }
+}
+
+.resizable-container-large {
+  /* Various breakpoints to make this break evenly, but slightly larger */
+  @media (min-width: 1200px) {
+    max-width: 1000px;
+  }
+  @media (min-width: 1000px) and (max-width: 1199px) {
+    max-width: 800px;
+  }
+  @media (min-width: 800px) and (max-width: 999px) {
+    max-width: 700px;
+  }
+  @media (min-width: 600px) and (max-width: 799px) {
+    max-width: 550px;
+  }
+  @media (min-width: 401px) and (max-width: 599px) {
+    max-width: 350px;
+  }
+  @media (min-width: 200px) and (max-width: 400px) {
+    max-width: 175px;
+  }
+}
+.post {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  font-family: Consolas, monospace;
+  line-height: 1.4;
+  color: #222;
+  background-color: #fff;
+  font-size: 0.9rem;
+  blockquote {
+    border-left: 3px solid #0066cc;
+    padding-left: 0.75rem;
+    margin: 0.75rem 1.5rem;
+    font-style: italic;
+    color: #444;
+    font-size: 0.85rem;
+  }
+
+  .post-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .post-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+    color: #0a0a0a;
+  }
+
+  .post-subtitle {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 0.3rem;
+  }
+
+  .post-title::after,
+  .post-subtitle::after .post-date::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #0a0a0a;
+    margin-top: 0.3rem;
+  }
+
+  .post-date {
+    font-size: 0.8rem;
+    color: #666;
+  }
+
+  .post-content {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #0a0a0a;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+    }
+    h2 {
+      font-size: 1.4rem;
+    }
+    h3 {
+      font-size: 1.2rem;
+    }
+    h4,
+    h5,
+    h6 {
+      font-size: 1rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: #0066cc;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    img {
+      max-width: 80%;
+      height: auto;
+      margin: 0.75rem 0;
+    }
+
+    blockquote {
+      border-left: 3px solid #0066cc;
+      padding-left: 0.75rem;
+      margin: 0.75rem 0;
+      font-style: italic;
+      color: #444;
+      font-size: 0.85rem;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+      background-color: #e6e6e6;
+      padding: 0.1rem 0.3rem;
+      border-radius: 2px;
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: Consolas, monospace;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 15px;
+  margin-top: 45px;
+  margin-bottom: 80px;
+
+  .post-title {
+    border-bottom: 1px solid #000000;
+    padding-bottom: 7.5px;
+    margin-bottom: 15px;
+  }
+
+  .content {
+    padding: 0;
+  }
+
+  #subhead {
+    margin: 0;
+    font-weight: normal;
+  }
+
+  #title {
+    margin-bottom: 0.15em;
+    font-size: 1.5em;
+  }
+
+  p {
+    font-size: 0.75em;
+    line-height: 1.125;
+    margin-bottom: 0.75em;
+  }
+  h1 {
+    font-size: 1.35em;
+    margin: 1em 0 1em 0;
+  }
+
+  h2 {
+    font-size: 1.125em;
+    margin: 1em 0 1em 0;
+  }
+
+  h3 {
+    font-size: 0.9em;
+    margin: 1em 0 1em 0;
+  }
+
+  h4 {
+    font-size: 0.8em;
+    margin: 0.75em 0 0.75em 0;
+    font-weight: bold;
+    color: #333333;
+    letter-spacing: 0.05em;
+  }
+
+  ul,
+  ol {
+    font-size: 0.75em;
+    line-height: 1.125;
+    margin-bottom: 0.75em;
+    padding-left: 1.5em;
+  }
+
+  li {
+    margin-bottom: 0.1em;
+  }
+
+  li:last-child {
+    margin-bottom: 0;
+  }
+
+  blockquote {
+    font-size: 0.9em;
+    color: #888888;
+    font-style: italic;
+  }
+}
+
+.blockquote-with-image {
+  display: flex;
+  align-items: flex-start;
+  margin: 1rem 0;
+}
+
+.blockquote-with-image img {
+  width: 80px; /* Adjust this value to match your desired image size */
+  height: auto;
+  margin-right: 1rem;
+  object-fit: cover;
+}
+
+.blockquote-with-image blockquote {
+  font-style: normal;
+  flex: 1;
+  margin: 0;
+  padding: 0.5rem 0;
+  border-left: 2px solid #888888;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  p:first-of-type {
+    font-style: italic;
+  }
+  p:not(:first-of-type) {
+    font-style: normal;
+  }
+}
+
+.blockquote-with-image p {
+  margin: 0;
+}
+
+.top-info {
+  @media (max-width: 400px) {
+    margin-left: 10px;
+  }
+  @media (min-width: 401px) {
+    margin-left: 40px;
+  }
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 1rem 0;
+  h1 {
+    margin-bottom: 0px;
+  }
+}
+
+.project-list {
+  font-family: Consolas, monospace;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px;
+  @media (max-width: 400px) {
+    padding: 0px 10px;
+  }
+  @media (min-width: 401px) {
+    padding: 0px 40px;
+  }
+}
+
+.project-item {
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 30px;
+  min-width: 300px;
+  max-width: 300px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.project-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+}
+
+.project-subhead {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 0.2em;
+}
+
+.project-description {
+  font-size: 1em;
+  margin-top: 0.5em;
+}
+
+.navigator {
+  font-family: Consolas, monospace, -apple-system, system-ui, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  display: flex;
+  justify-content: flex-start;
+  gap: 4px;
+  margin-top: 1rem;
+  a {
+    color: black;
+    font-size: 1em;
+    font-weight: normal;
+    &:hover {
+      color: #666;
+    }
+    &:visited {
+      color: black;
+    }
+  }
+}
+
+.image-display,
+.image-display-with-caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.image-display img,
+.image-display-with-caption img {
+  max-width: 75%;
+  height: auto;
+  object-fit: contain;
+}
+
+.image-display-with-caption {
+  flex-direction: column;
+}
+
+.image-caption {
+  text-align: center;
+  font-style: italic;
+  margin-top: 0rem;
+  color: #666666;
+  font-size: 0.75em;
+}
+
+@media (min-width: 768px) {
+  .image-display img,
+  .image-display-with-caption img {
+    max-width: none;
+    width: 75%;
+  }
+}

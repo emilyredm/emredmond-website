@@ -1,0 +1,33 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff; /* exact white */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 90%;
+  width: 100%;
+  text-align: center;
+}
+
+.responsive-img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+body::after {
+  content: '';
+  display: block;
+  height: 150vh; /* makes page tall enough to swipe */
+}
