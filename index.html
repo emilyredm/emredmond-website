@@ -37,12 +37,18 @@
       display: block;
       margin: auto;
       transform: translateX(-2%);
+      transition: opacity 0.6s ease-in-out;
+      cursor: pointer;
+    }
+    
+    .phone-transition {
+      transition: opacity 0.6s ease-in-out;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="SVG/Artboard 1 phoneRing.svg" alt="Phone Illustration" class="responsive-img" />
+    <img src="SVG/Artboard 1 phoneRing.svg" alt="Phone Illustration" class="responsive-img" id="phoneImage" />
   </div>
 
   <script>
@@ -50,6 +56,7 @@
     let redirected = false;
 
     function fadeAndRedirect() {
+      if (phoneAnswered) return; // Don't redirect while phone is being answered
       redirected = true;
       document.body.style.transition = 'opacity 0.4s';
       document.body.style.opacity = '0';
@@ -58,8 +65,49 @@
       }, 400);
     }
 
+    let phoneAnswered = false;
+
+    function answerPhone() {
+      if (phoneAnswered) return;
+      phoneAnswered = true;
+      
+      const phoneImage = document.getElementById('phoneImage');
+      phoneImage.classList.add('phone-transition');
+      phoneImage.style.opacity = '0';
+      
+      setTimeout(() => {
+        phoneImage.src = 'SVG/Artboard 2 phoneAnswer.svg';
+        phoneImage.alt = 'Phone Answered';
+        phoneImage.style.opacity = '1';
+        
+        // After showing answered phone, allow navigation again
+        setTimeout(() => {
+          phoneAnswered = false;
+        }, 2000);
+      }, 300);
+    }
+
     window.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("loaded");
+      
+      // Debug: Check if image loads
+      const phoneImage = document.getElementById('phoneImage');
+      console.log('Phone image element:', phoneImage);
+      
+      phoneImage.onload = function() {
+        console.log('Phone image loaded successfully');
+      };
+      
+      phoneImage.onerror = function() {
+        console.error('Failed to load phone image');
+      };
+      
+      // Add click handler to the phone
+      phoneImage.addEventListener('click', answerPhone);
+      phoneImage.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        answerPhone();
+      });
     });
 
     window.addEventListener("pageshow", function (event) {
