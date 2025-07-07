@@ -71,16 +71,16 @@ var init = function() {
   $('body').removeClass('nojs');
 
   const dialMap = {
-    "1": "about.html",
-    "2": "projects.html",
-    "3": "blog.html",
-    "4": "resume.html",
-    "5": "contact.html",
-    "6": "press.html",
-    "7": "listen.html",
-    "8": "read.html",
-    "9": "secret.html",
-    "0": "portal.html"
+    "1": { page: "about.html", name: "About Me" },
+    "2": { page: "projects.html", name: "My Projects" },
+    "3": { page: "blog.html", name: "Blog Posts" },
+    "4": { page: "resume.html", name: "My Resume" },
+    "5": { page: "contact.html", name: "Contact Info" },
+    "6": { page: "press.html", name: "Press & Media" },
+    "7": { page: "listen.html", name: "Listen & Music" },
+    "8": { page: "read.html", name: "Reading List" },
+    "9": { page: "secret.html", name: "Secret Page" },
+    "0": { page: "portal.html", name: "Portal Entry" }
   };
 
   $('[data-rotary]').each(function() {
@@ -111,12 +111,11 @@ var init = function() {
 
         dial.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
           if (typeof num !== 'undefined') {
-            input.val("" + num).change();
             if (dialMap[num]) {
-              document.body.style.opacity = '0';
-              setTimeout(() => {
-                window.location.href = dialMap[num];
-              }, 400);
+              input.val(dialMap[num].name).change();
+              input.attr('data-page', dialMap[num].page);
+            } else {
+              input.val("" + num).change();
             }
           }
         });

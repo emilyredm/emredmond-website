@@ -57,7 +57,7 @@
   </div>
 
   <div class="controls">
-    <input type="tel" id="input" maxlength="1" data-rotary="#demo" placeholder="Dial a number">
+    <input type="tel" id="input" maxlength="50" data-rotary="#demo" placeholder="Dial a number" readonly>
     <a id="call" title="Call" style="font-size: 2rem; text-decoration: none; cursor: pointer;">📞</a>
   </div>
 
@@ -84,23 +84,9 @@
       }, 400);
     }
 
-    // Redirect based on number dialed
-    const dialMap = {
-      "1": "about.html",
-      "2": "projects.html",
-      "3": "blog.html",
-      "4": "resume.html",
-      "5": "contact.html",
-      "6": "press.html",
-      "7": "listen.html",
-      "8": "read.html",
-      "9": "secret.html",
-      "0": "portal.html"
-    };
-
     document.getElementById("call").addEventListener("click", function () {
-      const inputValue = document.getElementById("input").value.trim();
-      const targetPage = dialMap[inputValue];
+      const input = document.getElementById("input");
+      const targetPage = input.getAttribute('data-page');
 
       if (targetPage) {
         document.body.style.opacity = '0';
@@ -108,7 +94,7 @@
           window.location.href = targetPage;
         }, 400);
       } else {
-        alert("No page linked to this number.");
+        alert("Please dial a number first.");
       }
     });
 
